@@ -24,10 +24,12 @@ import Foundation
 import UIKit
 
 class DropdownPresentationController: UIPresentationController {
-    private let dropDownHeight: CGFloat = 200
+    var settings: Settings!
+    private let dropDownHeight: CGFloat
     private let backgroundView = UIView()
     
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        self.dropDownHeight = settings.theme.dropDownHeight
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         
         backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

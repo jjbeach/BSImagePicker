@@ -63,6 +63,8 @@ public class Settings {
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
             NSAttributedString.Key.foregroundColor: UIColor.black
         ]
+        
+        public lazy var dropDownHeight: CGFloat = 200
     }
 
     public class Selection {
