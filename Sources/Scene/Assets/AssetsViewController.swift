@@ -35,7 +35,7 @@ class AssetsViewController: UIViewController {
         didSet { dataSource?.settings = settings }
     }
 
-    private let store: AssetStore
+    var store: AssetStore!
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private var fetchResult: PHFetchResult<PHAsset> = PHFetchResult<PHAsset>() {
         didSet {

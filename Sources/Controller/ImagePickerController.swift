@@ -34,7 +34,11 @@ open class ImagePickerController: UINavigationController {
     public var doneButton: UIBarButtonItem = UIBarButtonItem(title: localizedDone, style: .done, target: nil, action: nil)
     public var cancelButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
     public var albumButton: UIButton = UIButton(type: .custom)
-    public var assetStore: AssetStore = AssetStore(assets: [])
+    public var assetStore: AssetStore = AssetStore(assets: []){
+        didSet{
+            assetsViewController.store = assetStore
+        }
+    }
 
     // MARK: Internal properties
     var onSelection: ((_ asset: PHAsset) -> Void)?
