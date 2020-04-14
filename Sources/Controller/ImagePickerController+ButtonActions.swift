@@ -35,6 +35,9 @@ extension ImagePickerController {
     }
 
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
+        // When done button is pressed, we disable it since
+        // React Native callback type only permits a single invocation from native code
+        sender.isEnabled = false;
         imagePickerDelegate?.imagePicker(self, didFinishWithAssets: assetStore.assets)
         
         if settings.dismiss.enabled {
