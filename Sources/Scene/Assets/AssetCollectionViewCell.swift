@@ -22,6 +22,7 @@
 
 import UIKit
 import Photos
+import SwiftUI
 
 /**
 The photo cell.
@@ -33,6 +34,23 @@ class AssetCollectionViewCell: UICollectionViewCell {
     }
     var selectionIndex: Int? {
         didSet { selectionView.selectionIndex = selectionIndex }
+    }
+    var showSpinner: Bool? {
+        didSet {
+            self.selectionOverlayView.backgroundColor = UIColor.darkGray
+            self.selectionOverlayView.alpha = 0.6
+            self.selectionView.alpha = 0.4
+            self.activityView.center = imageView.center;
+            activityView.startAnimating()
+        }
+    }
+    var hideSpinner: Bool? {
+        didSet {
+            self.selectionOverlayView.backgroundColor = UIColor.lightGray
+            self.selectionView.alpha = 1.0
+            self.selectionOverlayView.alpha = 0.3
+            activityView.stopAnimating()
+        }
     }
 
     override var isSelected: Bool {
@@ -61,6 +79,7 @@ class AssetCollectionViewCell: UICollectionViewCell {
     
     private let selectionOverlayView: UIView = UIView(frame: .zero)
     private let selectionView: SelectionView = SelectionView(frame: .zero)
+    private let activityView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.white)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,9 +91,11 @@ class AssetCollectionViewCell: UICollectionViewCell {
         selectionOverlayView.backgroundColor = UIColor.lightGray
         selectionOverlayView.translatesAutoresizingMaskIntoConstraints = false
         selectionView.translatesAutoresizingMaskIntoConstraints = false
+        activityView.frame = CGRect(x: 65, y: 40, width: activityView.bounds.size.width, height: activityView.bounds.size.height);
         contentView.addSubview(imageView)
         contentView.addSubview(selectionOverlayView)
         contentView.addSubview(selectionView)
+        contentView.addSubview(activityView)
 
         // Add constraints
         NSLayoutConstraint.activate([
@@ -91,7 +112,6 @@ class AssetCollectionViewCell: UICollectionViewCell {
             selectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
             selectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4)
         ])
-
         updateAlpha(isSelected)
         updateAccessibilityLabel(isSelected)
     }
