@@ -49,6 +49,7 @@
 		55CDB45F22347D640050D572 /* ZoomInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CDB45E22347D640050D572 /* ZoomInteractionController.swift */; };
 		55F67B77222EEB2500805134 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F67B76222EEB2500805134 /* VideoCollectionViewCell.swift */; };
 		55F67B7B222F088500805134 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F67B7A222F088500805134 /* GradientView.swift */; };
+		7EB864BA2448532000A2FE7D /* Extensions PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB864B92448532000A2FE7D /* Extensions PHAsset.swift */; };
 		C2DC13CA23F75BDB0035FD13 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC13C923F75BDA0035FD13 /* NumberView.swift */; };
 		C2DC13CC23F75BE40035FD13 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC13CB23F75BE40035FD13 /* SelectionView.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +127,7 @@
 		55DAB07F23145A8A00982A5B /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
 		55F67B76222EEB2500805134 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		55F67B7A222F088500805134 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		7EB864B92448532000A2FE7D /* Extensions PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions PHAsset.swift"; sourceTree = "<group>"; };
 		C2DC13C923F75BDA0035FD13 /* NumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		C2DC13CB23F75BE40035FD13 /* SelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +180,7 @@
 				559DB81C21E78E4700CD58B4 /* Scene */,
 				550A315521D5298400AAF718 /* Info.plist */,
 				550A315421D5298400AAF718 /* BSImagePicker.h */,
+				7EB864B92448532000A2FE7D /* Extensions PHAsset.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55888E4B2231A31C003C861D /* VideoPreviewViewController.swift in Sources */,
+				7EB864BA2448532000A2FE7D /* Extensions PHAsset.swift in Sources */,
 				53FEDA162247FEB80098E34A /* CGSize+Scale.swift in Sources */,
 				55CDB4592234305B0050D572 /* PreviewBuilder.swift in Sources */,
 				55C5B806222C1BDD003CF3F1 /* ZoomTransitionDelegate.swift in Sources */,
