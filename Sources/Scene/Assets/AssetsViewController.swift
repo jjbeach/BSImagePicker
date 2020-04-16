@@ -165,39 +165,17 @@ class AssetsViewController: UIViewController {
         guard settings.theme.selectionStyle == .numbered else { return }
         guard let cell = collectionView.cellForItem(at: indexPath) as? AssetCollectionViewCell else { return }
         let asset = fetchResult.object(at: indexPath.row)
+        asset.fetchImgDataOnSelect(cell: cell)
         cell.selectionIndex = store.index(of: asset)
-    }    
+    }
+
 }
 
 extension AssetsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let asset = fetchResult.object(at: indexPath.row)
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) as? AssetCollectionViewCell else { return }
-        let manager = PHCachingImageManager()
-        let options = PHImageRequestOptions()
-        options.version = .original
-        options.isSynchronous = false
-        options.isNetworkAccessAllowed = true
-        options.progressHandler = { (progress, error, stop, info) in
-            print("Asset download progress is at \(progress)")
-            DispatchQueue.main.async{
-              cell.showSpinner = true
-            }
-        }
-        manager.requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: options) { (image, info) in
-            guard image != nil else
-            {
-                if let isIniCloud = info?[PHImageResultIsInCloudKey] as? NSNumber, isIniCloud.boolValue == true
-                {
-                }
-                return
-            }
-            cell.hideSpinner = true
-        }
-        
         selectionFeedback.selectionChanged()
         
+        let asset = fetchResult.object(at: indexPath.row)
         store.append(asset)
         delegate?.assetsViewController(self, didSelectAsset: asset)
 
@@ -264,3 +242,30 @@ extension AssetsViewController: PHPhotoLibraryChangeObserver {
         }
     }
 }
+
+extension PHAsset {
+    func fetchImgDataOnSelect(cell: AssetCollectionViewCell) {
+        let manager = PHCachingImageManager()
+        let options = PHImageRequestOptions()
+        options.version = .original
+        options.isSynchronous = false
+        options.isNetworkAccessAllowed = true
+        options.progressHandler = { (progress, error, stop, info) in
+            print("Asset download progress is at \(progress)")
+            DispatchQueue.main.async{
+              cell.showSpinner()
+            }
+        }
+        manager.requestImage(for: self, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: options) { (image, info) in
+            guard image != nil else
+            {
+                if let isIniCloud = info?[PHImageResultIsInCloudKey] as? NSNumber, isIniCloud.boolValue == true
+                {
+                }
+                return
+            }
+            cell.hideSpinner()
+        }
+    }
+}
+

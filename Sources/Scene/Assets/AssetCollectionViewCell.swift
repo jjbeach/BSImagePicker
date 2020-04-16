@@ -35,23 +35,6 @@ class AssetCollectionViewCell: UICollectionViewCell {
     var selectionIndex: Int? {
         didSet { selectionView.selectionIndex = selectionIndex }
     }
-    var showSpinner: Bool? {
-        didSet {
-            self.selectionOverlayView.backgroundColor = UIColor.darkGray
-            self.selectionOverlayView.alpha = 0.6
-            self.selectionView.alpha = 0.4
-            self.activityView.center = imageView.center;
-            activityView.startAnimating()
-        }
-    }
-    var hideSpinner: Bool? {
-        didSet {
-            self.selectionOverlayView.backgroundColor = UIColor.lightGray
-            self.selectionView.alpha = 1.0
-            self.selectionOverlayView.alpha = 0.3
-            activityView.stopAnimating()
-        }
-    }
 
     override var isSelected: Bool {
         didSet {
@@ -138,5 +121,21 @@ class AssetCollectionViewCell: UICollectionViewCell {
             self.selectionView.alpha = 0.0
             self.selectionOverlayView.alpha = 0.0
         }
+    }
+}
+
+extension AssetCollectionViewCell {
+    func showSpinner() {
+        self.selectionOverlayView.backgroundColor = UIColor.darkGray
+        self.selectionOverlayView.alpha = 0.6
+        self.selectionView.alpha = 0.4
+        self.activityView.center = imageView.center;
+        activityView.startAnimating()
+    }
+    func hideSpinner() {
+        self.selectionOverlayView.backgroundColor = UIColor.lightGray
+        self.selectionView.alpha = 1.0
+        self.selectionOverlayView.alpha = 0.3
+        activityView.stopAnimating()
     }
 }
